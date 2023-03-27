@@ -1,13 +1,13 @@
 import FungibleToken from "../../contracts/flow/token/FungibleToken.cdc"
 import FiatToken from "../../contracts/flow/token/FiatToken.cdc"
-import TeleportCustodyBSC from "../../contracts/flow/teleport/TeleportCustodyBSC.cdc"
+import TeleportCustodyEthereum from "../../contracts/flow/teleport/TeleportCustodyEthereum.cdc"
 
 transaction(target: Address) {
   // The teleport admin reference
-  let teleportAdminRef: &TeleportCustodyBSC.TeleportAdmin
+  let teleportAdminRef: &TeleportCustodyEthereum.TeleportAdmin
 
   prepare(teleportAdmin: AuthAccount) {
-    self.teleportAdminRef = teleportAdmin.borrow<&TeleportCustodyBSC.TeleportAdmin>(from: TeleportCustodyBSC.TeleportAdminStoragePath)
+    self.teleportAdminRef = teleportAdmin.borrow<&TeleportCustodyEthereum.TeleportAdmin>(from: TeleportCustodyEthereum.TeleportAdminStoragePath)
         ?? panic("Could not borrow a reference to the teleport admin resource")
   }
 
